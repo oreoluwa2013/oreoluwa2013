@@ -1,48 +1,26 @@
-import turtle
+import random
 
-# Setup screen
-screen = turtle.Screen()
-screen.bgcolor("lightblue")
+# Computer chooses a number between 1 and 100
+secret_number = random.randint(1, 100)
+attempts = 0
 
-# Create turtle
-t = turtle.Turtle()
-t.speed(3)
-t.width(2)
+print("I'm thinking of a number between 1 and 100.")
 
-# Function to draw a polygon
-def draw_polygon(sides, length, color):
-    t.fillcolor(color)
-    t.begin_fill()
-    for _ in range(sides):
-        t.forward(length)
-        t.left(360 / sides)
-    t.end_fill()
+while True:
+    guess = input("Enter your guess: ")
 
-# Draw equilateral triangle
-t.penup()
-t.goto(-200, 0)
-t.pendown()
-draw_polygon(3, 100, "red")
+    # Check if input is a number
+    if not guess.isdigit():
+        print("Please enter a valid number.")
+        continue
 
-# Draw rectangle
-t.penup()
-t.goto(0, 0)
-t.pendown()
-t.fillcolor("green")
-t.begin_fill()
-for _ in range(2):
-    t.forward(140)
-    t.left(90)
-    t.forward(80)
-    t.left(90)
-t.end_fill()
+    guess = int(guess)
+    attempts += 1
 
-# Draw hexagon
-t.penup()
-t.goto(200, 0)
-t.pendown()
-draw_polygon(6, 70, "yellow")
-
-# Finish
-t.hideturtle()
-screen.mainloop()
+    if guess < secret_number:
+        print("Too low!")
+    elif guess > secret_number:
+        print("Too high!")
+    else:
+        print(f"🎉 Correct! You guessed the number in {attempts} attempts.")
+        break
