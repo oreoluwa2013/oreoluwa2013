@@ -1,28 +1,26 @@
-# Base class
-class Robot:
-    def __init__(self, name, model):
-        self.name = name
-        self.model = model
+class ExpressionSolver:
+    def __init__(self, expression):
+        self.expression = expression
 
-    def introduce(self):
-        print("Hello! I am a robot.")
-        print(f"My name is {self.name}.")
-        print(f"My model number is {self.model}.")
-
-
-# Derived class (Inheritance)
-class SmartRobot(Robot):
-    def __init__(self, name, model, ability):
-        super().__init__(name, model)
-        self.ability = ability
-
-    def show_ability(self):
-        print(f"My special ability is: {self.ability}.")
+    def evaluate(self):
+        try:
+            result = eval(self.expression)
+            return result
+        except Exception as e:
+            return f"Error: {e}"
 
 
-# Creating an object
-robot1 = SmartRobot("AIVA", "X-2026", "Artificial Intelligence Assistance")
+class CalculatorApp:
+    def run(self):
+        expression = "(3 + 5) * 2"
+        solver = ExpressionSolver(expression)
+        result = solver.evaluate()
 
-# Calling methods
-robot1.introduce()
-robot1.show_ability()
+        print("Expression:", expression)
+        print("Result:", result)
+
+
+# Main execution
+if __name__ == "__main__":
+    app = CalculatorApp()
+    app.run()
