@@ -1,47 +1,43 @@
-# File operations example in Python
+import tkinter as tk
+import random
+import string
 
-file_name = "example.txt"
+# Function to generate password
+def generate_password():
+    length = int(length_entry.get())
+    
+    characters = string.ascii_letters + string.digits + string.punctuation
+    password = ""
+    
+    for i in range(length):
+        password += random.choice(characters)
+    
+    result_label.config(text=password)
 
-# 1. Write to a file (creates file if it doesn't exist)
-with open(file_name, "w") as file:
-    file.write("Hello, World!\n")
-    file.write("This is a sample file.\n")
-    file.write("Python file handling example.\n")
+# Create main window
+window = tk.Tk()
+window.title("Random Password Generator")
+window.geometry("400x250")
 
-print("File written successfully.\n")
+# Title Label
+title_label = tk.Label(window, text="Password Generator", font=("Arial", 16))
+title_label.pack(pady=10)
 
-# 2. Read the entire file
-with open(file_name, "r") as file:
-    content = file.read()
-    print("Full File Content:")
-    print(content)
+# Length Label
+length_label = tk.Label(window, text="Enter Password Length:")
+length_label.pack()
 
-# 3. Read file line by line
-with open(file_name, "r") as file:
-    print("Reading line by line:")
-    for line in file:
-        print(line.strip())
+# Length Entry
+length_entry = tk.Entry(window)
+length_entry.pack(pady=5)
 
-# 4. Append to the file
-with open(file_name, "a") as file:
-    file.write("This line was appended.\n")
+# Generate Button
+generate_button = tk.Button(window, text="Generate Password", command=generate_password)
+generate_button.pack(pady=10)
 
-print("\nContent after appending:")
+# Result Label
+result_label = tk.Label(window, text="", font=("Arial", 12), fg="blue")
+result_label.pack(pady=10)
 
-with open(file_name, "r") as file:
-    print(file.read())
-
-# 5. Count number of lines
-with open(file_name, "r") as file:
-    lines = file.readlines()
-    print(f"Number of lines: {len(lines)}")
-
-# 6. Search for a word
-search_word = "Python"
-with open(file_name, "r") as file:
-    found = any(search_word in line for line in file)
-
-if found:
-    print(f"'{search_word}' found in file.")
-else:
-    print(f"'{search_word}' not found in file.")
+# Run the application
+window.mainloop()

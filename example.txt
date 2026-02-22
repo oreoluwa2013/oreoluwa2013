@@ -1,2 +1,0 @@
-This file is opened in w+ mode.
-Appending with a+ mode.
