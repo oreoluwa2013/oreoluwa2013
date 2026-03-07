@@ -1,43 +1,47 @@
 import tkinter as tk
 import random
-import string
 
-# Function to generate password
-def generate_password():
-    length = int(length_entry.get())
-    
-    characters = string.ascii_letters + string.digits + string.punctuation
-    password = ""
-    
-    for i in range(length):
-        password += random.choice(characters)
-    
-    result_label.config(text=password)
+# choices
+choices = ["Rock", "Paper", "Scissors"]
 
-# Create main window
+# function to determine winner
+def play(user_choice):
+    computer_choice = random.choice(choices)
+
+    if user_choice == computer_choice:
+        result = "It's a Tie!"
+    elif (user_choice == "Rock" and computer_choice == "Scissors") or \
+         (user_choice == "Paper" and computer_choice == "Rock") or \
+         (user_choice == "Scissors" and computer_choice == "Paper"):
+        result = "You Win!"
+    else:
+        result = "Computer Wins!"
+
+    result_label.config(
+        text=f"Your choice: {user_choice}\nComputer choice: {computer_choice}\nResult: {result}"
+    )
+
+# create window
 window = tk.Tk()
-window.title("Random Password Generator")
-window.geometry("400x250")
+window.title("Rock Paper Scissors Game")
+window.geometry("350x300")
 
-# Title Label
-title_label = tk.Label(window, text="Password Generator", font=("Arial", 16))
-title_label.pack(pady=10)
+title = tk.Label(window, text="Rock Paper Scissors", font=("Arial", 16))
+title.pack(pady=10)
 
-# Length Label
-length_label = tk.Label(window, text="Enter Password Length:")
-length_label.pack()
+# buttons
+rock_btn = tk.Button(window, text="Rock", width=15, command=lambda: play("Rock"))
+rock_btn.pack(pady=5)
 
-# Length Entry
-length_entry = tk.Entry(window)
-length_entry.pack(pady=5)
+paper_btn = tk.Button(window, text="Paper", width=15, command=lambda: play("Paper"))
+paper_btn.pack(pady=5)
 
-# Generate Button
-generate_button = tk.Button(window, text="Generate Password", command=generate_password)
-generate_button.pack(pady=10)
+scissors_btn = tk.Button(window, text="Scissors", width=15, command=lambda: play("Scissors"))
+scissors_btn.pack(pady=5)
 
-# Result Label
-result_label = tk.Label(window, text="", font=("Arial", 12), fg="blue")
-result_label.pack(pady=10)
+# result display
+result_label = tk.Label(window, text="", font=("Arial", 12))
+result_label.pack(pady=20)
 
-# Run the application
+# run GUI loop
 window.mainloop()
