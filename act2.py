@@ -1,22 +1,23 @@
-def myfunction(n):
-
-    # First Loop → O(n)
-    for i in range(0, n+1):
-        print("First Loop")
-
-    # Second Loop → O(log n)
-    j = 1
-    while (j <= n+1):
-        print("Second Loop", j)
-        j = j * 2
-
-    # Third Loop → O(1)
-    for i in range(0, 100):
-        print("Third Loop")
+def myfunction2(n):
+    # Base case
+    if (n <= 1):
+        return
+    
+    # Constant operation
+    print("Codingal")
+    
+    # Recursive call
+    myfunction2(n-1)
 
 
-# call the function
-myfunction(10)
+# Example function call
+myfunction2(5)
 
-# Time Complexity:
-# O(n) + O(log n) + O(1) = O(n)
+# Recurrence Relation:
+# Each call performs O(1) work (print statement)
+# and then calls the function with (n-1)
+
+# T(n) = T(n-1) + O(1)
+
+# Solving the recurrence:
+# T(n) = O(n)
