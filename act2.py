@@ -1,15 +1,17 @@
-# Function to check if a number is prime
-def is_prime(num):
-    if num < 2:
-        return False
-    for i in range(2, int(num ** 0.5) + 1):
-        if num % i == 0:
-            return False
-    return True
+# Solve a simple series circuit
 
-# Find and print all 2-digit prime numbers
-print("Two-digit prime numbers are:")
+def series_circuit(voltage, resistances):
+    total_resistance = sum(resistances)
+    current = voltage / total_resistance
+    voltage_drops = [current * r for r in resistances]
+    
+    return current, voltage_drops
 
-for number in range(10, 100):
-    if is_prime(number):
-        print(number, end=" ")
+# Example usage
+V = 12  # volts
+resistors = [2, 4, 6]  # ohms
+
+I, drops = series_circuit(V, resistors)
+
+print("Total Current:", I, "A")
+print("Voltage Drops:", drops)
