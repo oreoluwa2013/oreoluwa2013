@@ -1,17 +1,10 @@
-# Solve a simple series circuit
-
-def series_circuit(voltage, resistances):
-    total_resistance = sum(resistances)
-    current = voltage / total_resistance
-    voltage_drops = [current * r for r in resistances]
-    
-    return current, voltage_drops
+def rightmost_set_bit(n):
+    if n == 0:
+        return 0
+    return n & -n
 
 # Example usage
-V = 12  # volts
-resistors = [2, 4, 6]  # ohms
+num = int(input("Enter a number: "))
+result = rightmost_set_bit(num)
 
-I, drops = series_circuit(V, resistors)
-
-print("Total Current:", I, "A")
-print("Voltage Drops:", drops)
+print("Rightmost set bit value:", result)
