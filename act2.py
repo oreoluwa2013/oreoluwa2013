@@ -1,17 +1,17 @@
-def longest_consecutive_ones(n):
-    count = 0
-    max_count = 0
+def get_substrings(s):
+    substrings = []
+    n = len(s)
     
-    while n > 0:
-        if n & 1:  # check last bit
-            count += 1
-            max_count = max(max_count, count)
-        else:
-            count = 0
-        n >>= 1  # right shift
+    for i in range(n):
+        for j in range(i + 1, n + 1):
+            substrings.append(s[i:j])
     
-    return max_count
+    return substrings
 
 # Example
-num = int(input("Enter a number: "))
-print("Longest consecutive 1s:", longest_consecutive_ones(num))
+string = input("Enter a string: ")
+result = get_substrings(string)
+
+print("All substrings:")
+for sub in result:
+    print(sub)
