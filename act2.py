@@ -1,20 +1,13 @@
-def reverse_bits(n, bit_size=32):
-    reversed_num = 0
-    
-    for i in range(bit_size):
-        # Shift reversed_num left
-        reversed_num <<= 1
-        
-        # Add the last bit of n
-        reversed_num |= (n & 1)
-        
-        # Shift n right
-        n >>= 1
-    
-    return reversed_num
+def is_power_of_8(n):
+    if n <= 0:
+        return False
+    while n % 8 == 0:
+        n = n // 8
+    return n == 1
 
-# Example usage
+# Example
 num = int(input("Enter a number: "))
-result = reverse_bits(num)
-
-print("Reversed bits number:", result)
+if is_power_of_8(num):
+    print("Yes, it is a power of 8.")
+else:
+    print("No, it is not a power of 8.")
