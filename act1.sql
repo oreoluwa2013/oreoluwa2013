@@ -14,14 +14,19 @@ INSERT INTO employees (id, name, salary, department) VALUES
 (4, 'Sara', 20000, 'Finance'),
 (5, 'Amir', 30000, 'IT');
 
--- Query using different operators
+-- Use aggregate functions
 SELECT 
-    name,
-    salary,
-    salary * 12 AS annual_salary   -- Arithmetic operator
+    COUNT(*) AS total_employees,      -- Count rows
+    SUM(salary) AS total_salary,      -- Add salaries
+    AVG(salary) AS average_salary,    -- Average salary
+    MAX(salary) AS highest_salary,    -- Maximum salary
+    MIN(salary) AS lowest_salary      -- Minimum salary
+FROM employees;
+
+-- Aggregate with GROUP BY
+SELECT 
+    department,
+    COUNT(*) AS num_employees,
+    AVG(salary) AS avg_salary
 FROM employees
-WHERE 
-    salary >= 30000                -- Comparison operator
-    AND department = 'IT'          -- Logical operator
-    AND name LIKE 'A%'             -- Special operator (LIKE)
-    OR salary IN (20000, 25000);   -- Special operator (IN)
+GROUP BY department;
