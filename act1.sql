@@ -1,35 +1,41 @@
--- Create Employee table
-CREATE TABLE Employees (
-    EmpID INT PRIMARY KEY,
-    Name VARCHAR(50),
-    Department VARCHAR(50),
-    Salary INT
+-- Create Products table
+CREATE TABLE Products (
+    ProductID INT PRIMARY KEY,
+    ProductName VARCHAR(50),
+    Category VARCHAR(50),
+    Price INT
 );
 
 -- Insert sample data
-INSERT INTO Employees (EmpID, Name, Department, Salary)
+INSERT INTO Products (ProductID, ProductName, Category, Price)
 VALUES
-(1, 'John', 'HR', 45000),
-(2, 'Sara', 'IT', 60000),
-(3, 'Mike', 'Finance', 52000),
-(4, 'Emma', 'IT', 75000),
-(5, 'David', 'HR', 40000);
+(1, 'Laptop', 'Electronics', 70000),
+(2, 'Lamp', 'Home Decor', 1500),
+(3, 'Mobile Phone', 'Electronics', 30000),
+(4, 'Leather Bag', 'Fashion', 4500),
+(5, 'Mouse', 'Electronics', 1200),
+(6, 'Dining Table', 'Furniture', 15000);
 
--- SELECT statement
-SELECT * FROM Employees;
+-- Display all products
+SELECT * FROM Products;
 
--- WHERE clause
-SELECT * FROM Employees
-WHERE Department = 'IT';
+-- Using LIKE operator
+SELECT * FROM Products
+WHERE ProductName LIKE 'L%';
 
--- MIN function
-SELECT MIN(Salary) AS MinimumSalary
-FROM Employees;
+-- Using DISTINCT keyword
+SELECT DISTINCT Category
+FROM Products;
 
--- MAX function
-SELECT MAX(Salary) AS MaximumSalary
-FROM Employees;
+-- Sorting data by price (highest to lowest)
+SELECT * FROM Products
+ORDER BY Price DESC;
 
--- Employees with salary greater than 50000
-SELECT * FROM Employees
-WHERE Salary > 50000;
+-- Filtering products with price greater than 5000
+SELECT * FROM Products
+WHERE Price > 5000;
+
+-- Combining LIKE with sorting
+SELECT * FROM Products
+WHERE ProductName LIKE '%o%'
+ORDER BY ProductName ASC;
