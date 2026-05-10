@@ -1,45 +1,35 @@
--- Create a table
-CREATE TABLE Students (
-    StudentID INT PRIMARY KEY,
+-- Create Employee table
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY,
     Name VARCHAR(50),
-    Age INT,
-    Course VARCHAR(50),
-    Marks INT
+    Department VARCHAR(50),
+    Salary INT
 );
 
--- Insert data into the table
-INSERT INTO Students (StudentID, Name, Age, Course, Marks)
+-- Insert sample data
+INSERT INTO Employees (EmpID, Name, Department, Salary)
 VALUES
-(1, 'Alice', 20, 'SQL Basics', 85),
-(2, 'Bob', 21, 'SQL Basics', 72),
-(3, 'Charlie', 19, 'Database Systems', 90),
-(4, 'David', 22, 'SQL Basics', 65),
-(5, 'Emma', 20, 'Database Systems', 88);
+(1, 'John', 'HR', 45000),
+(2, 'Sara', 'IT', 60000),
+(3, 'Mike', 'Finance', 52000),
+(4, 'Emma', 'IT', 75000),
+(5, 'David', 'HR', 40000);
 
--- Display all records
-SELECT * FROM Students;
+-- SELECT statement
+SELECT * FROM Employees;
 
--- Manipulate data (Update marks)
-UPDATE Students
-SET Marks = 80
-WHERE StudentID = 2;
+-- WHERE clause
+SELECT * FROM Employees
+WHERE Department = 'IT';
 
--- Delete a record
-DELETE FROM Students
-WHERE StudentID = 4;
+-- MIN function
+SELECT MIN(Salary) AS MinimumSalary
+FROM Employees;
 
--- Sort data by marks (highest to lowest)
-SELECT * FROM Students
-ORDER BY Marks DESC;
+-- MAX function
+SELECT MAX(Salary) AS MaximumSalary
+FROM Employees;
 
--- Filter data (students scoring above 80)
-SELECT * FROM Students
-WHERE Marks > 80;
-
--- Count total students
-SELECT COUNT(*) AS TotalStudents
-FROM Students;
-
--- Average marks
-SELECT AVG(Marks) AS AverageMarks
-FROM Students;
+-- Employees with salary greater than 50000
+SELECT * FROM Employees
+WHERE Salary > 50000;
